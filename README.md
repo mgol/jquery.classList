@@ -3,6 +3,8 @@ jQuery classList extension
 
 Re-implementation of jQuery class manipulation methods that utilizes the classList interface.
 
+Compatible with jQuery 1.9+.
+
 Rationale
 --------------------------------------
 
