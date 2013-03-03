@@ -93,8 +93,7 @@
 						}
 					}
 
-					// Toggle whole class name
-				} else if (type === 'undefined' || type === 'boolean') {
+				} else if (type === 'undefined' || type === 'boolean') { // toggle whole class name
 					if (this.className) {
 						// store className if set
 						$._data(this, '__className__', this.className);
@@ -104,9 +103,8 @@
 					// then remove the whole classname (if there was one, the above saved it).
 					// Otherwise bring back whatever was previously saved (if anything),
 					// falling back to the empty string if nothing was stored.
-					this.className = this.className || value === false ?
-						'' :
-						$._data(this, '__className__') || '';
+					this.className = this.className ||
+						value === false ? '' : $._data(this, '__className__') || '';
 				}
 			});
 		},
