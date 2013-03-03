@@ -1,3 +1,10 @@
+/**
+ * jQuery classList extension
+ * Author & copyright: Michał Gołębiowski <m.goleb@gmail.com>
+ *
+ * Source: https://github.com/mzgol/jquery.classList
+ * Released under the MIT license (see the MIT-LICENSE.txt file)
+ */
 (function(window, $) {
 	'use strict';
 
