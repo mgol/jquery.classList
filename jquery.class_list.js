@@ -5,7 +5,7 @@
  * Source: https://github.com/mzgol/jquery.classList
  * Released under the MIT license (see the MIT-LICENSE.txt file)
  */
-(function(window, $) {
+(function($) {
 	'use strict';
 
 	var notWhitespaceRegExp = /\S+/g;
@@ -130,4 +130,4 @@
 			return false;
 		},
 	});
-})(window, jQuery);
+})(jQuery);
