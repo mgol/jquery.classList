@@ -3,7 +3,7 @@ jQuery classList extension
 
 Re-implementation of jQuery class manipulation methods that utilizes the classList interface.
 
-Compatible with jQuery 1.9+.
+Compatible with jQuery 1.9.x-2.0.x.
 
 Rationale
 --------------------------------------
@@ -25,8 +25,13 @@ for IE9, probably with conditional comments) it might be a good choice to use th
 Browser support
 --------------------------------------
 
-1. Chrome, Firefox, Opera, Safari: current version - 1
+1. Google Chrome 25+
+2. Firefox 19+
+3. Opera 12.10+
+4. Safari 5.1+
 2. Internet Explorer 10+
+
+In fact the code will work in many older versions, too, but they were not tested.
 
 Internet Explorer 9 doesn't implement the `classList` interface. If you use a polyfill for that feature,
 this jQuery extension gets compatible with IE9. An example polyfill is in available under this link:
