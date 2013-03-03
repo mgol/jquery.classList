@@ -12,10 +12,10 @@ HTML5 defines the `classList` interface, allowing for adding/removing/toggling c
 contains a specified class using built-in methods as opposed to manually parsing the `className` field where
 classes are separated by spaces.
 
-This native interface is much faster that the previous way, two test cases that confirm it are:
+This native interface is much faster that the previous way, two test suites that confirm it are:
 
-1. http://jsperf.com/classlist-v-old-way/5
-2. http://jsperf.com/classlist-v-old-way/7
+1. http://jsperf.com/classlist-v-old-way/8 - large number of classes
+2. http://jsperf.com/classlist-v-old-way/10 - small number of classes
 
 Unfortunately, jQuery currently doesn't utilize this interface by default, one of the reasons being it's
 not supported by Internet Explorer 9. However, if your site/web app doesn't need to support this browser
