@@ -5,20 +5,25 @@
  * Source: https://github.com/mzgol/jquery.classList
  * Released under the MIT license (see the MIT-LICENSE.txt file)
  */
-(function($) {
+(function ($) {
     'use strict';
 
     var notWhitespaceRegExp = /\S+/g;
 
+    var div = $('<div>').get(0);
+    div.classList.add('a', 'b');
+
+    var supportMultipleArgs = /(^| )a( |$)/.test(div.className) && /(^| )b( |$)/.test(div.className);
+
     $.fn.extend({
-        addClass: function(value) {
+        addClass: function (value) {
             var classes, elem, clazz, j,
                 i = 0,
                 len = this.length,
                 proceed = typeof value === 'string' && value;
 
             if ($.isFunction(value)) {
-                return this.each(function(j) {
+                return this.each(function (j) {
                     $(this).addClass(value.call(this, j, this.className));
                 });
             }
@@ -31,9 +36,13 @@
                     elem = this[i];
 
                     if (elem.nodeType === 1) {
-                        j = 0;
-                        while ((clazz = classes[j++])) {
-                            elem.classList.add(clazz);
+                        if (supportMultipleArgs) {
+                            elem.classList.add.apply(elem.classList, classes);
+                        } else {
+                            j = 0;
+                            while ((clazz = classes[j++])) {
+                                elem.classList.add(clazz);
+                            }
                         }
                     }
                 }
@@ -42,14 +51,14 @@
             return this;
         },
 
-        removeClass: function(value) {
+        removeClass: function (value) {
             var classes, elem, clazz, j,
                 i = 0,
                 len = this.length,
                 proceed = arguments.length === 0 || typeof value === 'string' && value;
 
             if ($.isFunction(value)) {
-                return this.each(function(j) {
+                return this.each(function (j) {
                     $(this).removeClass(value.call(this, j, this.className));
                 });
             }
@@ -60,12 +69,16 @@
                     elem = this[i];
 
                     if (elem.nodeType === 1 && elem.className) {
-                        j = 0;
                         if (!value) {
                             elem.className = '';
                         }
-                        while ((clazz = classes[j++])) {
-                            elem.classList.remove(clazz);
+                        if (supportMultipleArgs) {
+                            elem.classList.remove.apply(elem.classList, classes);
+                        } else {
+                            j = 0;
+                            while ((clazz = classes[j++])) {
+                                elem.classList.remove(clazz);
+                            }
                         }
                     }
                 }
@@ -74,17 +87,17 @@
             return this;
         },
 
-        toggleClass: function(value, stateVal) {
+        toggleClass: function (value, stateVal) {
             var type = typeof value,
                 isBool = typeof stateVal === 'boolean';
 
             if ($.isFunction(value)) {
-                return this.each(function(i) {
+                return this.each(function (i) {
                     $(this).toggleClass(value.call(this, i, this.className, stateVal), stateVal);
                 });
             }
 
-            return this.each(function() {
+            return this.each(function () {
                 if (type === 'string') {
                     // Toggle individual class names
                     var className,
@@ -121,7 +134,7 @@
             });
         },
 
-        hasClass: function(value) {
+        hasClass: function (value) {
             var i = 0,
                 l = this.length;
             for (; i < l; i++) {
