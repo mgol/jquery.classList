@@ -94,7 +94,12 @@
                     // Check each className given, space separated list
                     while ((className = classNames[i++])) {
                         if (isBool) {
-                            this.classList.toggle(className, stateVal);
+                            // Firefox & IE10 don't support toggle boolean flag.
+                            if (stateVal) {
+                                this.classList.add(className);
+                            } else {
+                                this.classList.remove(className);
+                            }
                         } else {
                             this.classList.toggle(className);
                         }
