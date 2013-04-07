@@ -29,10 +29,9 @@ Browser support
 2. Firefox 19+
 3. Opera 12.10+
 4. Safari 5.1+
-2. Internet Explorer 10+
+2. Internet Explorer 6+
 
 In fact the code will work in many older versions, too, but they were not tested.
 
-Internet Explorer 9 doesn't implement the `classList` interface. If you use a polyfill for that feature,
-this jQuery extension gets compatible with IE9. An example polyfill is in available under this link:
-https://github.com/eligrey/classList.js. Otherwise, you can filter this code out for IE<10 by conditional comments.
+In browsers that don't support the `classList` intefrace (e.g. IE < 10) this code fallbacks to the built-in
+jQuery implementation so it doesn't break them.

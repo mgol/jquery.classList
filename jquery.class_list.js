@@ -8,9 +8,14 @@
 (function ($) {
     'use strict';
 
-    var notWhitespaceRegExp = /\S+/g;
+    var notWhitespaceRegExp = /\S+/g,
+        div = $('<div>').get(0);
 
-    var div = $('<div>').get(0);
+    if (!div.classList) {
+        // Don't brake non-classList-compatible browsers.
+        return;
+    }
+
     div.classList.add('a', 'b');
 
     var supportMultipleArgs = /(^| )a( |$)/.test(div.className) && /(^| )b( |$)/.test(div.className);
