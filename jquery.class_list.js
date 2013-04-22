@@ -8,7 +8,8 @@
 (function ($) {
     'use strict';
 
-    var notWhitespaceRegExp = /\S+/g,
+    var supportsMultipleArgs,
+        notWhitespaceRegExp = /\S+/g,
         div = $('<div>').get(0);
 
     if (!div.classList) {
@@ -18,7 +19,7 @@
 
     div.classList.add('a', 'b');
 
-    var supportMultipleArgs = /(^| )a( |$)/.test(div.className) && /(^| )b( |$)/.test(div.className);
+    supportsMultipleArgs = /(^| )a( |$)/.test(div.className) && /(^| )b( |$)/.test(div.className);
 
     $.fn.extend({
         addClass: function (value) {
@@ -41,7 +42,7 @@
                     elem = this[i];
 
                     if (elem.nodeType === 1) {
-                        if (supportMultipleArgs) {
+                        if (supportsMultipleArgs) {
                             elem.classList.add.apply(elem.classList, classes);
                         } else {
                             j = 0;
@@ -77,7 +78,7 @@
                         if (!value) {
                             elem.className = '';
                         }
-                        if (supportMultipleArgs) {
+                        if (supportsMultipleArgs) {
                             elem.classList.remove.apply(elem.classList, classes);
                         } else {
                             j = 0;
