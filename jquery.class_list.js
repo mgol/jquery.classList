@@ -104,38 +104,40 @@
             }
 
             return this.each(function () {
-                if (type === 'string') {
-                    // Toggle individual class names
-                    var className,
-                        i = 0,
-                        classNames = value.match(notWhitespaceRegExp) || [];
+                if (this.nodeType === 1) {
+                    if (type === 'string') {
+                        // Toggle individual class names
+                        var className,
+                            i = 0,
+                            classNames = value.match(notWhitespaceRegExp) || [];
 
-                    // Check each className given, space separated list
-                    while ((className = classNames[i++])) {
-                        if (isBool) {
-                            // Firefox & IE10 don't support toggle boolean flag.
-                            if (stateVal) {
-                                this.classList.add(className);
+                        // Check each className given, space separated list
+                        while ((className = classNames[i++])) {
+                            if (isBool) {
+                                // Firefox & IE10 don't support toggle boolean flag.
+                                if (stateVal) {
+                                    this.classList.add(className);
+                                } else {
+                                    this.classList.remove(className);
+                                }
                             } else {
-                                this.classList.remove(className);
+                                this.classList.toggle(className);
                             }
-                        } else {
-                            this.classList.toggle(className);
                         }
-                    }
 
-                } else if (type === 'undefined' || type === 'boolean') { // toggle whole class name
-                    if (this.className) {
-                        // store className if set
-                        $._data(this, '__className__', this.className);
-                    }
+                    } else if (type === 'undefined' || type === 'boolean') { // toggle whole class name
+                        if (this.className) {
+                            // store className if set
+                            $._data(this, '__className__', this.className);
+                        }
 
-                    // If the element has a class name or if we're passed 'false',
-                    // then remove the whole classname (if there was one, the above saved it).
-                    // Otherwise bring back whatever was previously saved (if anything),
-                    // falling back to the empty string if nothing was stored.
-                    this.className = this.className ||
-                        value === false ? '' : $._data(this, '__className__') || '';
+                        // If the element has a class name or if we're passed 'false',
+                        // then remove the whole classname (if there was one, the above saved it).
+                        // Otherwise bring back whatever was previously saved (if anything),
+                        // falling back to the empty string if nothing was stored.
+                        this.className = this.className ||
+                            value === false ? '' : $._data(this, '__className__') || '';
+                    }
                 }
             });
         },
