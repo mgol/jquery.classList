@@ -13,7 +13,7 @@
         div = $('<div>').get(0);
 
     if (!div.classList) {
-        // Don't brake non-classList-compatible browsers.
+        // Don't break non-classList-compatible browsers.
         return;
     }
 
