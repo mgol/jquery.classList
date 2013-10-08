@@ -27,6 +27,7 @@ Note: in browsers that don't support the `classList` intefrace (e.g. IE < 10) th
 jQuery implementation so it doesn't break them.
 
 Here are some of the browsers that can utilize full functionality of this plugin:
+
 1. Google Chrome, Firefox: current - 1, current
 2. Opera: 12.1x, current - 1, current
 4. Safari 5.1+
