@@ -18,19 +18,15 @@ A couple of test suites comparing both implementations:
 2. http://jsperf.com/classlist-v-old-way/10 - small number of classes
 
 jQuery currently doesn't utilize this interface by default, one of the reasons being it's not supported
-by Internet Explorer 9. If your site/web app needs to support this browser you need to include this plugin
-via conditional comments to not break it:
-
-```html
-<script src="jquery.js"></script>
-<!--[if IE]>
-    <script src="jquery.class_list.js"></script>
-<![endif]-->
-```
+by Internet Explorer 9.
 
 Browser support
 --------------------------------------
 
+Note: in browsers that don't support the `classList` intefrace (e.g. IE < 10) the plugin fallbacks to the built-in
+jQuery implementation so it doesn't break them.
+
+Here are some of the browsers that can utilize full functionality of this plugin:
 1. Google Chrome, Firefox: current - 1, current
 2. Opera: 12.1x, current - 1, current
 4. Safari 5.1+
@@ -39,4 +35,4 @@ Browser support
 "current - 1, current" denotes that the current stable version of the browser and the version that preceded it
 are supported. For example, if the current version of a browser is 24.x, we support the 24.x and 23.x versions.
 
-In fact the code will work in many older versions, too, but they were not tested.
+In fact the code will work in many older versions, too, but they are not actively tested.
