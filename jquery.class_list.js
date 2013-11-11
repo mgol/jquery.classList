@@ -10,7 +10,7 @@
 
     var supportsMultipleArgs,
         notWhitespaceRegExp = /\S+/g,
-        div = $('<div>').get(0);
+        div = $('<div>')[0];
 
     if (!div.classList) {
         // Don't break non-classList-compatible browsers.
@@ -18,7 +18,6 @@
     }
 
     div.classList.add('a', 'b');
-
     supportsMultipleArgs = /(^| )a( |$)/.test(div.className) && /(^| )b( |$)/.test(div.className);
 
     $.fn.extend({
@@ -114,7 +113,7 @@
                         // Check each className given, space separated list
                         while ((className = classNames[i++])) {
                             if (isBool) {
-                                // Firefox & IE10 don't support toggle boolean flag.
+                                // IE10+ doesn't support the toggle boolean flag.
                                 if (stateVal) {
                                     this.classList.add(className);
                                 } else {
