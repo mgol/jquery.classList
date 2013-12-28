@@ -23,7 +23,7 @@ by Internet Explorer 9.
 Browser support
 --------------------------------------
 
-Note: in browsers that don't support the `classList` intefrace (e.g. IE < 10) the plugin fallbacks to the built-in
+Note: in browsers that don't support the `classList` interface (e.g. IE < 10) the plugin falls back to the built-in
 jQuery implementation so it doesn't break them.
 
 Here are some of the browsers that can utilize full functionality of this plugin:
