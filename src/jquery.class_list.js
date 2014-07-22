@@ -3,7 +3,7 @@
  * Author & copyright: Michał Gołębiowski <m.goleb@gmail.com>
  *
  * Source: https://github.com/mzgol/jquery.classList
- * Released under the MIT license (see the MIT-LICENSE.txt file)
+ * Released under the MIT license (see the LICENSE.txt file)
  */
 (function ($) {
     'use strict';
@@ -45,7 +45,7 @@
                             elem.classList.add.apply(elem.classList, classes);
                         } else {
                             j = 0;
-                            while ((clazz = classes[j++])) {
+                            while (clazz = classes[j++]) {
                                 elem.classList.add(clazz);
                             }
                         }
@@ -81,7 +81,7 @@
                             elem.classList.remove.apply(elem.classList, classes);
                         } else {
                             j = 0;
-                            while ((clazz = classes[j++])) {
+                            while (clazz = classes[j++]) {
                                 elem.classList.remove(clazz);
                             }
                         }
@@ -111,7 +111,7 @@
                             classNames = value.match(notWhitespaceRegExp) || [];
 
                         // Check each className given, space separated list
-                        while ((className = classNames[i++])) {
+                        while (className = classNames[i++]) {
                             if (isBool) {
                                 // IE10+ doesn't support the toggle boolean flag.
                                 if (stateVal) {

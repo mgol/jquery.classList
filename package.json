@@ -1,0 +1,52 @@
+{
+  "name": "jquery-classlist",
+  "version": "0.2.0",
+  "description": "Re-implementation of jQuery class manipulation methods that utilizes the classList interface",
+  "homepage": "https://github.com/mzgol/jquery.classList",
+  "author": {
+    "name": "Michał Gołębiowski",
+    "email": "m.goleb@gmail.com"
+  },
+  "keywords": [
+    "jquery",
+    "plugin",
+    "jqueryplugin",
+    "browser",
+    "browseronly"
+  ],
+  "main": "dist/jquery.class_list.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mzgol/jquery.classList.git"
+  },
+  "bugs": "https://github.com/mzgol/jquery.classList/issues",
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "files": [
+    "dist/jquery.class_list.js",
+    "dist/jquery.class_list.min.js",
+    "dist/jquery.class_list.min.js.map",
+    "LICENSE.txt"
+  ],
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
+    "grunt-contrib-copy": "0.5.0",
+    "grunt-contrib-uglify": "0.5.0",
+    "grunt-eslint": "0.6.0",
+    "grunt-jscs": "0.6.1",
+    "jscs-trailing-comma": "0.3.0",
+    "load-grunt-tasks": "0.6.0",
+    "time-grunt": "0.4.0"
+  },
+  "scripts": {
+    "prepublish": "grunt build",
+    "test": "grunt test"
+  },
+  "engines": {
+    "node": ">=0.10.21"
+  }
+}
