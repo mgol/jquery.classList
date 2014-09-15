@@ -14,11 +14,11 @@
     "browser",
     "browseronly"
   ],
+  "main": "src/jquery.class_list.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mzgol/jquery.classList.git"
   },
-  "main": "src/jquery.class_list.js",
   "bugs": "https://github.com/mzgol/jquery.classList/issues",
   "licenses": [
     {
