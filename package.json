@@ -20,11 +20,7 @@
     "url": "https://github.com/mzgol/jquery.classList.git"
   },
   "bugs": "https://github.com/mzgol/jquery.classList/issues",
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
   "files": [
     "dist/jquery.class_list.js",
     "dist/jquery.class_list.min.js",
