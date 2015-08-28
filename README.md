@@ -32,4 +32,4 @@ In fact the code will work in many older versions, too, but they are not activel
 ## Caveats
 
 Supported browsers with the jQuery classList plugin pass the whole jQuery test suite [except for a few tests](https://github.com/mzgol/jquery/commit/b4385d246b3cb1056b22dd4d0b8a1c1209031824) that check for extra
-whitespaces in the `class` attribute as there is no way to control that behavior via the `classList` interface. Also, in Safari 7 passing the same class to `classList.add` as multiple arguments results in duplicated class names in the `class` attribute. However, `classList.remove` removes all duplicated classes so this shouldn't be a big problem in practice. 
+whitespaces in the `class` attribute as there is no way to control that behavior via the `classList` interface. Also, in Safari 7 passing the same class to `classList.add` in multiple parameters results in duplicated class names in the `class` attribute. However, `classList.remove` removes all duplicated classes so this shouldn't be a big problem in practice.
