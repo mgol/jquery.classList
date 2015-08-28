@@ -122,7 +122,9 @@
                     } else if (type === 'undefined' || type === 'boolean') {
                         // Toggle whole class name
 
-                        if (this.className) {
+                        // className can be set to a string consisting only of whitespaces;
+                        // we don't want to store such a value.
+                        if (this.className.trim()) {
                             // store className if set
                             $._data(this, '__className__', this.className);
                         }
