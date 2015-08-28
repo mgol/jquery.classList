@@ -105,9 +105,13 @@
 
                         // Check each class given, space separated list
                         while ((clazz = classes[i++])) {
-                            // The branching is needed as `stateVal === undefined` is treated
-                            // in three different ways by the spec, Chrome & Firefox.
-                            // See https://github.com/whatwg/dom/issues/64
+                            // Support: Chrome 44+, Safari 8+, Edge 10240+
+                            // The branching is needed as most browsers cast an `undefined`
+                            // `stateVal` to `false` instead of ignoring it.
+                            // https://github.com/whatwg/dom/issues/64
+                            // https://code.google.com/p/chromium/issues/detail?id=489665
+                            // https://bugs.webkit.org/show_bug.cgi?id=148582
+                            // https://connect.microsoft.com/IE/feedbackdetail/view/1725606/
                             if (isBool) {
                                 this.classList.toggle(clazz, stateVal);
                             } else {
