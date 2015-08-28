@@ -1,6 +1,12 @@
 {
     "env": {
-        "browser": true
+        "browser": true,
+        "node": false
+    },
+
+    "rules": {
+        // Strict mode
+        "strict": [2, "function"] // "global" in Node, "function" in a browser
     },
 
     "globals": {

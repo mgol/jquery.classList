@@ -45,7 +45,7 @@
                             elem.classList.add.apply(elem.classList, classes);
                         } else {
                             j = 0;
-                            while (clazz = classes[j++]) {
+                            while ((clazz = classes[j++])) {
                                 elem.classList.add(clazz);
                             }
                         }
@@ -81,7 +81,7 @@
                             elem.classList.remove.apply(elem.classList, classes);
                         } else {
                             j = 0;
-                            while (clazz = classes[j++]) {
+                            while ((clazz = classes[j++])) {
                                 elem.classList.remove(clazz);
                             }
                         }
@@ -111,7 +111,7 @@
                             classNames = value.match(notWhitespaceRegExp) || [];
 
                         // Check each className given, space separated list
-                        while (className = classNames[i++]) {
+                        while ((className = classNames[i++])) {
                             if (isBool) {
                                 // IE10+ doesn't support the toggle boolean flag.
                                 if (stateVal) {
@@ -124,7 +124,9 @@
                             }
                         }
 
-                    } else if (type === 'undefined' || type === 'boolean') { // toggle whole class name
+                    } else if (type === 'undefined' || type === 'boolean') {
+                        // Toggle whole class name
+
                         if (this.className) {
                             // store className if set
                             $._data(this, '__className__', this.className);
