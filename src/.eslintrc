@@ -10,7 +10,6 @@
     },
 
     "globals": {
-        "jQuery": false,
-        "$": false
+        "jQuery": false
     }
 }
