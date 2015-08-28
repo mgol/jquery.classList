@@ -5,5 +5,9 @@ sudo: false
 node_js:
   - 'iojs'
 
+before_install:
+  # Log HTTP requests
+  - npm config set loglevel http
+
 install:
   - time npm install
