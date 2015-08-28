@@ -8,21 +8,28 @@
 (function ($) {
     'use strict';
 
-    var supportsMultipleArgs,
-        notWhitespaceRegExp = /\S+/g,
-        div = $('<div>')[0];
+    var rnotwhite = /\S+/g,
+        svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
-    if (!div.classList) {
-        // Don't break non-classList-compatible browsers.
+    if (!svgNode.classList) {
+        // Don't break non-classList-compatible browsers. Some browsers support classList
+        // on regular elements but not on SVGs so this check is safer.
         return;
     }
 
-    div.classList.add('a', 'b');
-    supportsMultipleArgs = /(^| )a( |$)/.test(div.className) && /(^| )b( |$)/.test(div.className);
+    svgNode.classList.add('a', 'b');
+    svgNode.classList.toggle('c', false);
+
+    if (!svgNode.classList.contains('a') || !svgNode.classList.contains('b') ||
+        svgNode.classList.contains('c')) {
+        // No support for multiple arguments to classList.add and/or the toggle flag;
+        // don't use this plugin.
+        return;
+    }
 
     $.fn.extend({
         addClass: function (value) {
-            var classes, elem, clazz, j,
+            var classes, elem,
                 i = 0,
                 len = this.length,
                 proceed = typeof value === 'string' && value;
@@ -35,20 +42,13 @@
 
             if (proceed) {
                 // The disjunction here is for better compressibility (see removeClass)
-                classes = (value || '').match(notWhitespaceRegExp) || [];
+                classes = (value || '').match(rnotwhite) || [];
 
                 for (; i < len; i++) {
                     elem = this[i];
 
                     if (elem.nodeType === 1) {
-                        if (supportsMultipleArgs) {
-                            elem.classList.add.apply(elem.classList, classes);
-                        } else {
-                            j = 0;
-                            while ((clazz = classes[j++])) {
-                                elem.classList.add(clazz);
-                            }
-                        }
+                        elem.classList.add.apply(elem.classList, classes);
                     }
                 }
             }
@@ -57,7 +57,7 @@
         },
 
         removeClass: function (value) {
-            var classes, elem, clazz, j,
+            var classes, elem,
                 i = 0,
                 len = this.length,
                 proceed = arguments.length === 0 || typeof value === 'string' && value;
@@ -68,7 +68,7 @@
                 });
             }
             if (proceed) {
-                classes = (value || '').match(notWhitespaceRegExp) || [];
+                classes = (value || '').match(rnotwhite) || [];
 
                 for (; i < len; i++) {
                     elem = this[i];
@@ -77,14 +77,7 @@
                         if (!value) {
                             elem.className = '';
                         }
-                        if (supportsMultipleArgs) {
-                            elem.classList.remove.apply(elem.classList, classes);
-                        } else {
-                            j = 0;
-                            while ((clazz = classes[j++])) {
-                                elem.classList.remove(clazz);
-                            }
-                        }
+                        elem.classList.remove.apply(elem.classList, classes);
                     }
                 }
             }
@@ -106,21 +99,19 @@
                 if (this.nodeType === 1) {
                     if (type === 'string') {
                         // Toggle individual class names
-                        var className,
+                        var clazz,
                             i = 0,
-                            classNames = value.match(notWhitespaceRegExp) || [];
+                            classes = value.match(rnotwhite) || [];
 
-                        // Check each className given, space separated list
-                        while ((className = classNames[i++])) {
+                        // Check each class given, space separated list
+                        while ((clazz = classes[i++])) {
+                            // The branching is needed as `stateVal === undefined` is treated
+                            // in three different ways by the spec, Chrome & Firefox.
+                            // See https://github.com/whatwg/dom/issues/64
                             if (isBool) {
-                                // IE10+ doesn't support the toggle boolean flag.
-                                if (stateVal) {
-                                    this.classList.add(className);
-                                } else {
-                                    this.classList.remove(className);
-                                }
+                                this.classList.toggle(clazz, stateVal);
                             } else {
-                                this.classList.toggle(className);
+                                this.classList.toggle(clazz);
                             }
                         }
 
@@ -133,7 +124,7 @@
                         }
 
                         // If the element has a class name or if we're passed 'false',
-                        // then remove the whole classname (if there was one, the above saved it).
+                        // then remove the whole className (if there was one, the above saved it).
                         // Otherwise bring back whatever was previously saved (if anything),
                         // falling back to the empty string if nothing was stored.
                         this.className = this.className ||
