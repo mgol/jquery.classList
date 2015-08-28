@@ -1,6 +1,6 @@
 {
   "name": "jquery-classlist",
-  "version": "1.0.1-pre",
+  "version": "1.0.1",
   "description": "Re-implementation of jQuery class manipulation methods that utilizes the classList interface",
   "homepage": "https://github.com/mzgol/jquery.classList",
   "author": {
