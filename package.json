@@ -41,8 +41,5 @@
   "scripts": {
     "prepublish": "grunt build",
     "test": "grunt test"
-  },
-  "engines": {
-    "node": ">=0.10.21"
   }
 }
