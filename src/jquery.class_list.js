@@ -122,8 +122,11 @@
                     } else if (type === 'undefined' || type === 'boolean') {
                         // Toggle whole class name
 
+                        // Support: Chrome 44+
                         // className can be set to a string consisting only of whitespaces;
-                        // we don't want to store such a value.
+                        // we don't want to store such a value; especially that only Chrome
+                        // collapses `className` set to a whitespace-only string.
+                        // https://code.google.com/p/chromium/issues/detail?id=526289
                         if (this.className.trim()) {
                             // store className if set
                             $._data(this, '__className__', this.className);

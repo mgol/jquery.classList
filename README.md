@@ -17,9 +17,9 @@ jQuery currently doesn't utilize this interface, one of the reasons being it's n
 
 ## Browser support
 
-Note: in browsers that don't support the `classList` interface (e.g. all IE & Android Browser) the plugin falls back to the built-in jQuery implementation so it doesn't break them.
+Note: in browsers that don't fully support the `classList` interface (e.g. all IE & Android Browser) the plugin falls back to the built-in jQuery implementation so it doesn't break them.
 
-Here are some of the browsers that can utilize full functionality of this plugin:
+The following browsers can utilize full functionality of this plugin:
 
 1. Chrome (for desktop & Android), Edge, Firefox, Opera: Current -1, Current
 2. Safari 7.0+
@@ -31,5 +31,10 @@ In fact the code will work in many older versions, too, but they are not activel
 
 ## Caveats
 
-Supported browsers with the jQuery classList plugin pass the whole jQuery test suite [except for a few tests](https://github.com/mzgol/jquery/commit/b4385d246b3cb1056b22dd4d0b8a1c1209031824) that check for extra
-whitespaces in the `class` attribute as there is no way to control that behavior via the `classList` interface. Also, in Safari 7 passing the same class to `classList.add` in multiple parameters results in duplicated class names in the `class` attribute. However, `classList.remove` removes all duplicated classes so this shouldn't be a big problem in practice.
+Supported browsers with the jQuery classList plugin pass the whole jQuery test suite with a few minor exceptions:
+ 
+1. [A few tests](https://github.com/mzgol/jquery/commit/b4385d246b3cb1056b22dd4d0b8a1c1209031824) that check for extra whitespaces in the `class` attribute. This is because (at the time of writing this section) only Edge performed [`classList` update steps](https://dom.spec.whatwg.org/#concept-DTL-update) correctly and there is no way to control that behavior via the `classList` interface. Relevant bug reports:
+    1. Chrome: https://code.google.com/p/chromium/issues/detail?id=526282
+    2. Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=869788
+    2. Safari: https://bugs.webkit.org/show_bug.cgi?id=148589
+2. In Safari 7 passing the same class to `classList.add` in multiple parameters results in duplicated class names in the `class` attribute which makes another few tests fail. However, `classList.remove` removes all duplicated classes so this shouldn't be a problem unless you're parsing the `className` attribute directly by yourself. This has been fixed in Safari 8.
