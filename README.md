@@ -10,8 +10,8 @@ The DOM spec defines [the `classList` interface](https://dom.spec.whatwg.org/#do
 
 A couple of test suites comparing both implementations:
 
-1. http://jsperf.com/classlist-v-old-way/16 - small (10) number of classes
-2. http://jsperf.com/classlist-v-old-way/17 - large (100) number of classes
+1. https://jsperf.com/classlist-v-old-way/18 - small (10) number of classes
+2. https://jsperf.com/classlist-v-old-way/19 - large (100) number of classes
 
 jQuery currently doesn't utilize this interface, one of the reasons being it's not supported by Internet Explorer 9 and it doesn't work on SVGs even in IE 11.
 
