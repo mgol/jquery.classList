@@ -8,8 +8,8 @@
 (function ($) {
     'use strict';
 
-    var rnotwhite = /\S+/g,
-        svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    var rnotwhite = /\S+/g;
+    var svgNode = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 
     if (!svgNode.classList) {
         // Don't break non-classList-compatible browsers. Some browsers support classList
@@ -29,10 +29,10 @@
 
     $.fn.extend({
         addClass: function (value) {
-            var classes, elem,
-                i = 0,
-                len = this.length,
-                proceed = typeof value === 'string' && value;
+            var classes, elem;
+            var i = 0;
+            var len = this.length;
+            var proceed = typeof value === 'string' && value;
 
             if ($.isFunction(value)) {
                 return this.each(function (j) {
@@ -57,10 +57,10 @@
         },
 
         removeClass: function (value) {
-            var classes, elem,
-                i = 0,
-                len = this.length,
-                proceed = arguments.length === 0 || typeof value === 'string' && value;
+            var classes, elem;
+            var i = 0;
+            var len = this.length;
+            var proceed = arguments.length === 0 || typeof value === 'string' && value;
 
             if ($.isFunction(value)) {
                 return this.each(function (j) {
@@ -86,8 +86,8 @@
         },
 
         toggleClass: function (value, stateVal) {
-            var type = typeof value,
-                isBool = typeof stateVal === 'boolean';
+            var type = typeof value;
+            var isBool = typeof stateVal === 'boolean';
 
             if ($.isFunction(value)) {
                 return this.each(function (i) {
@@ -99,9 +99,9 @@
                 if (this.nodeType === 1) {
                     if (type === 'string') {
                         // Toggle individual class names
-                        var clazz,
-                            i = 0,
-                            classes = value.match(rnotwhite) || [];
+                        var clazz;
+                        var i = 0;
+                        var classes = value.match(rnotwhite) || [];
 
                         // Check each class given, space separated list
                         while ((clazz = classes[i++])) {
@@ -144,8 +144,9 @@
         },
 
         hasClass: function (value) {
-            var i = 0,
-                l = this.length;
+            var i = 0;
+            var l = this.length;
+
             for (; i < l; i++) {
                 if (this[i].nodeType === 1) {
                     if (this[i].classList.contains(value)) {
