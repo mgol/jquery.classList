@@ -2,7 +2,7 @@
   "name": "jquery-classlist",
   "version": "1.0.3-pre",
   "description": "Re-implementation of jQuery class manipulation methods that utilizes the classList interface",
-  "homepage": "https://github.com/mzgol/jquery.classList",
+  "homepage": "https://github.com/mgol/jquery.classList",
   "author": {
     "name": "Michał Gołębiowski",
     "email": "m.goleb@gmail.com"
@@ -16,9 +16,9 @@
   "main": "dist/jquery.class_list.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mzgol/jquery.classList.git"
+    "url": "https://github.com/mgol/jquery.classList.git"
   },
-  "bugs": "https://github.com/mzgol/jquery.classList/issues",
+  "bugs": "https://github.com/mgol/jquery.classList/issues",
   "license": "MIT",
   "files": [
     "dist/jquery.class_list.js",

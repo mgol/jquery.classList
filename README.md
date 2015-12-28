@@ -33,7 +33,7 @@ In fact the code will work in many older versions, too, but they are not activel
 
 Supported browsers with the jQuery classList plugin pass the whole jQuery test suite with a few minor exceptions:
  
-1. [A few tests](https://github.com/mzgol/jquery/commit/b4385d246b3cb1056b22dd4d0b8a1c1209031824) that check for extra whitespaces in the `class` attribute. This is because (at the time of writing this section) only Edge performed [`classList` update steps](https://dom.spec.whatwg.org/#concept-DTL-update) correctly and there is no way to control that behavior via the `classList` interface. Relevant bug reports:
+1. [A few tests](https://github.com/mgol/jquery/commit/b4385d246b3cb1056b22dd4d0b8a1c1209031824) that check for extra whitespaces in the `class` attribute. This is because (at the time of writing this section) only Edge performed [`classList` update steps](https://dom.spec.whatwg.org/#concept-DTL-update) correctly and there is no way to control that behavior via the `classList` interface. Relevant bug reports:
     1. Chrome: https://code.google.com/p/chromium/issues/detail?id=526282
     2. Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=869788
     2. Safari: https://bugs.webkit.org/show_bug.cgi?id=148589
