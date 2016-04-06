@@ -5,7 +5,7 @@
  * Source: https://github.com/mzgol/jquery.classList
  * Released under the MIT license (see the LICENSE.txt file)
  */
-(function ($) {
+(function () {
     'use strict';
 
     var rnotwhite = /\S+/g;
@@ -27,26 +27,26 @@
         return;
     }
 
-    $.fn.extend({
+    var getClass = function getClass(elem) {
+        return elem.getAttribute && elem.getAttribute('class') || '';
+    };
+
+    jQuery.fn.extend({
         addClass: function (value) {
             var classes, elem;
             var i = 0;
-            var len = this.length;
-            var proceed = typeof value === 'string' && value;
 
-            if ($.isFunction(value)) {
+            if (jQuery.isFunction(value)) {
                 return this.each(function (j) {
-                    $(this).addClass(value.call(this, j, this.className));
+                    jQuery(this).addClass(value.call(this, j, getClass(this)));
                 });
             }
 
-            if (proceed) {
+            if (typeof value === 'string' && value) {
                 // The disjunction here is for better compressibility (see removeClass)
                 classes = (value || '').match(rnotwhite) || [];
 
-                for (; i < len; i++) {
-                    elem = this[i];
-
+                while ((elem = this[i++])) {
                     if (elem.nodeType === 1) {
                         elem.classList.add.apply(elem.classList, classes);
                     }
@@ -59,24 +59,22 @@
         removeClass: function (value) {
             var classes, elem;
             var i = 0;
-            var len = this.length;
-            var proceed = arguments.length === 0 || typeof value === 'string' && value;
 
-            if ($.isFunction(value)) {
+            if (jQuery.isFunction(value)) {
                 return this.each(function (j) {
-                    $(this).removeClass(value.call(this, j, this.className));
+                    jQuery(this).removeClass(value.call(this, j, getClass(this)));
                 });
             }
-            if (proceed) {
+
+            if (!arguments.length) {
+                return this.attr('class', '');
+            }
+
+            if (typeof value === 'string' && value) {
                 classes = (value || '').match(rnotwhite) || [];
 
-                for (; i < len; i++) {
-                    elem = this[i];
-
-                    if (elem.nodeType === 1 && elem.className) {
-                        if (!value) {
-                            elem.className = '';
-                        }
+                while ((elem = this[i++])) {
+                    if (elem.nodeType === 1) {
                         elem.classList.remove.apply(elem.classList, classes);
                     }
                 }
@@ -87,57 +85,65 @@
 
         toggleClass: function (value, stateVal) {
             var type = typeof value;
-            var isBool = typeof stateVal === 'boolean';
 
-            if ($.isFunction(value)) {
+            if (typeof stateVal === 'boolean' && type === 'string') {
+                return stateVal ? this.addClass(value) : this.removeClass(value);
+            }
+
+            if (jQuery.isFunction(value)) {
                 return this.each(function (i) {
-                    $(this).toggleClass(value.call(this, i, this.className, stateVal), stateVal);
+                    jQuery(this).toggleClass(
+                        value.call(this, i, getClass(this), stateVal),
+                        stateVal
+                    );
                 });
             }
 
             return this.each(function () {
-                if (this.nodeType === 1) {
-                    if (type === 'string') {
-                        // Toggle individual class names
-                        var clazz;
-                        var i = 0;
-                        var classes = value.match(rnotwhite) || [];
+                var className;
+                var classNames;
+                var i;
 
-                        // Check each class given, space separated list
-                        while ((clazz = classes[i++])) {
-                            // Support: Chrome 44+, Safari 8+, Edge 10240+
-                            // The branching is needed as most browsers cast an `undefined`
-                            // `stateVal` to `false` instead of ignoring it.
-                            // https://github.com/whatwg/dom/issues/64
-                            // https://code.google.com/p/chromium/issues/detail?id=489665
-                            // https://bugs.webkit.org/show_bug.cgi?id=148582
-                            // https://connect.microsoft.com/IE/feedbackdetail/view/1725606/
-                            if (isBool) {
-                                this.classList.toggle(clazz, stateVal);
-                            } else {
-                                this.classList.toggle(clazz);
-                            }
+                if (type === 'string') {
+
+                    // Toggle individual class names.
+                    i = 0;
+                    classNames = value.match(rnotwhite) || [];
+
+                    // Check each class given, space separated list
+                    while ((className = classNames[i++])) {
+                        // Support: Safari <=8 - 9 only (fixed in Technical Preview)
+                        // The branching is needed as Safari casts an `undefined`
+                        // `stateVal` to `false` instead of ignoring it.
+                        // https://github.com/whatwg/dom/issues/64
+                        // https://bugs.webkit.org/show_bug.cgi?id=148582
+                        if (typeof stateVal === 'boolean') {
+                            this.classList.toggle(className, stateVal);
+                        } else {
+                            this.classList.toggle(className);
                         }
+                    }
 
-                    } else if (type === 'undefined' || type === 'boolean') {
-                        // Toggle whole class name
+                } else if (value === undefined || type === 'boolean') {
 
-                        // Support: Chrome 44+
-                        // className can be set to a string consisting only of whitespaces;
-                        // we don't want to store such a value; especially that only Chrome
-                        // collapses `className` set to a whitespace-only string.
-                        // https://code.google.com/p/chromium/issues/detail?id=526289
-                        if (this.className.trim()) {
-                            // store className if set
-                            $._data(this, '__className__', this.className);
-                        }
+                    // Toggle whole class name (deprecated).
+                    className = getClass(this);
+                    if (className) {
 
-                        // If the element has a class name or if we're passed 'false',
-                        // then remove the whole className (if there was one, the above saved it).
-                        // Otherwise bring back whatever was previously saved (if anything),
-                        // falling back to the empty string if nothing was stored.
-                        this.className = this.className ||
-                            value === false ? '' : $._data(this, '__className__') || '';
+                        // Store className if set
+                        jQuery._data(this, '__className__', className);
+                    }
+
+                    // If the element has a class name or if we're passed `false`,
+                    // then remove the whole classname (if there was one, the above saved it).
+                    // Otherwise bring back whatever was previously saved (if anything),
+                    // falling back to the empty string if nothing was stored.
+                    if (this.setAttribute) {
+                        this.setAttribute('class',
+                            className || value === false ?
+                                '' :
+                                jQuery._data(this, '__className__') || ''
+                        );
                     }
                 }
             });
@@ -158,4 +164,4 @@
             return false;
         },
     });
-})(jQuery);
+})();

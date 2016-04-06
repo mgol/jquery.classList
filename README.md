@@ -33,8 +33,7 @@ In fact the code will work in many older versions, too, but they are not activel
 
 Supported browsers with the jQuery classList plugin pass the whole jQuery test suite with a few minor exceptions:
  
-1. [A few tests](https://github.com/mgol/jquery/commit/b4385d246b3cb1056b22dd4d0b8a1c1209031824) that check for extra whitespaces in the `class` attribute. This is because (at the time of writing this section) only Edge performed [`classList` update steps](https://dom.spec.whatwg.org/#concept-DTL-update) correctly and there is no way to control that behavior via the `classList` interface. Relevant bug reports:
-    1. Chrome: https://code.google.com/p/chromium/issues/detail?id=526282
+1. [A few tests](https://github.com/mgol/jquery/commit/11f440c3c8ce869bd79dd0ec716247b4380170dc) that check for extra whitespaces in the `class` attribute or the presence of the `class` attribute are failing. This is mostly because in Safari up to version 9.x and in current Firefox & Chrome (at the time of writing this section) [`classList` update steps](https://dom.spec.whatwg.org/#concept-DTL-update) are not performed correctly and there is no way to control that behavior via the `classList` interface. Relevant bug reports:
+    1. Chrome: https://crbug.com/600964
     2. Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=869788
-    2. Safari: https://bugs.webkit.org/show_bug.cgi?id=148589
 2. In Safari 7 passing the same class to `classList.add` in multiple parameters results in duplicated class names in the `class` attribute which makes another few tests fail. However, `classList.remove` removes all duplicated classes so this shouldn't be a problem unless you're parsing the `className` attribute directly by yourself. This has been fixed in Safari 8.
