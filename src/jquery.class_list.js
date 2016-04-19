@@ -27,6 +27,7 @@
         return;
     }
 
+    var originalHasClass = jQuery.fn.hasClass;
     var getClass = function getClass(elem) {
         return elem.getAttribute && elem.getAttribute('class') || '';
     };
@@ -150,6 +151,10 @@
         },
 
         hasClass: function (value) {
+            if (rnotwhite.test(value)) {
+              return originalHasClass(value);
+            }
+
             var i = 0;
             var l = this.length;
 
