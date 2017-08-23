@@ -27,12 +27,12 @@
     "LICENSE.txt"
   ],
   "devDependencies": {
-    "eslint-config-mgol": "0.0.34",
+    "eslint-config-mgol": "0.0.40",
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
     "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-uglify": "2.0.0",
-    "grunt-eslint": "19.0.0",
+    "grunt-contrib-uglify": "3.0.1",
+    "grunt-eslint": "20.0.0",
     "load-grunt-tasks": "3.5.2",
     "time-grunt": "1.4.0"
   },
