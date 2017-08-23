@@ -1,6 +1,6 @@
 /**
  * jQuery classList extension
- * Author & copyright: Michał Gołębiowski <m.goleb@gmail.com>
+ * Author & copyright: Michał Gołębiowski-Owczarek <m.goleb@gmail.com>
  *
  * Source: https://github.com/mzgol/jquery.classList
  * Released under the MIT license (see the LICENSE.txt file)
