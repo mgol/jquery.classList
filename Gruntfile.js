@@ -15,6 +15,7 @@ module.exports = function (grunt) {
         eslint: {
             all: {
                 src: [
+                    '*.mjs',
                     '*.js',
                     'src/*.js',
                 ],
