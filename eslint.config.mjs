@@ -10,7 +10,7 @@ export default [
         ],
     },
     {
-        files: [ "*.js" ],
+        files: [ "*.js", "scripts/**/*.js" ],
         languageOptions: {
             sourceType: "script",
             globals: {
@@ -23,7 +23,7 @@ export default [
         },
     },
     {
-        files: [ "*.mjs" ],
+        files: [ "*.mjs", "scripts/**/*.mjs" ],
         languageOptions: {
             sourceType: "module",
             globals: {

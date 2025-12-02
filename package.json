@@ -29,17 +29,16 @@
     "LICENSE.txt"
   ],
   "devDependencies": {
-    "eslint-config-mgol": "0.0.49",
-    "globals": "15.4.0",
-    "grunt": "1.6.1",
-    "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-uglify": "5.2.2",
-    "grunt-eslint": "25.0.0",
-    "load-grunt-tasks": "5.1.0",
-    "time-grunt": "2.0.0"
+    "eslint": "9.39.1",
+    "eslint-config-mgol": "0.0.50",
+    "globals": "16.5.0",
+    "terser": "5.44.1"
   },
   "scripts": {
-    "prepublish": "grunt build",
-    "test": "grunt test"
+    "build": "npm run copy && npm run minify",
+    "copy": "node scripts/copy.mjs",
+    "minify": "terser dist/jquery.class_list.js --config-file terser.config.json --source-map \"base='dist',filename='jquery.class_list.min.js',url='jquery.class_list.min.js.map'\" -o dist/jquery.class_list.min.js",
+    "prepublish": "npm run build",
+    "test": "eslint ."
   }
 }
