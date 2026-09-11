@@ -29,10 +29,10 @@
     "LICENSE.txt"
   ],
   "devDependencies": {
-    "eslint": "9.39.1",
+    "eslint": "10.10.0",
     "eslint-config-mgol": "0.0.50",
-    "globals": "16.5.0",
-    "terser": "5.44.1"
+    "globals": "17.12.0",
+    "terser": "5.51.2"
   },
   "scripts": {
     "build": "npm run copy && npm run minify",
